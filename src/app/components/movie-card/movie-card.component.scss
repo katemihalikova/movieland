@@ -1,0 +1,22 @@
+
+// :host {
+//   display: contents;
+// }
+
+.movieCard img {
+  aspect-ratio: 16 / 9;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+  transition-property: all;
+  transition-duration: .3s;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+
+.movieInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: .7rem;
+}
