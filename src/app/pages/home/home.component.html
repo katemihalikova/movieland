@@ -1,35 +1,45 @@
 <h2>Discover the amazing movies worlds</h2>
 
-<h3> Now playing </h3>
-<app-wrapper-list
-  [columnsSm]="1"
-  [columnsMd]="2"
-  [columnsLg]="5"
->
-  @for (movie of movieList.slice(0, 5); track movie.id) {
-    <app-movie-card [movie]="movie"></app-movie-card>
-  }
+@if (loading) {
+  <p>Loading...</p>
+}
 
-</app-wrapper-list>
+@if (!loading) {
+  <h3> Now playing </h3>
+  <app-wrapper-list
+    [columnsSm]="1"
+    [columnsMd]="2"
+    [columnsLg]="5"
+  >
+    @for (movie of movieList.slice(0, 5); track movie.id) {
+      <app-movie-card [movie]="movie"></app-movie-card>
+    }
+  </app-wrapper-list>
+}
 
-<h3> Upcoming movies </h3>
-<app-wrapper-list
-  [columnsSm]="1"
-  [columnsMd]="2"
-  [columnsLg]="3"
->
-  @for (movie of movieList.slice(0, 3); track movie.id) {
-    <app-movie-card [movie]="movie"></app-movie-card>
-  }
-</app-wrapper-list>
 
-<h3> Popular movies </h3>
-<app-wrapper-list
-  [columnsSm]="1"
-  [columnsMd]="2"
-  [columnsLg]="4"
->
-  @for (movie of movieList.slice(0, 4); track movie.id) {
+@if (!loading) {
+  <h3> Upcoming movies </h3>
+  <app-wrapper-list
+    [columnsSm]="1"
+    [columnsMd]="2"
+    [columnsLg]="3"
+  >
+    @for (movie of movieList.slice(0, 3); track movie.id) {
     <app-movie-card [movie]="movie"></app-movie-card>
-  }
-</app-wrapper-list>
+    }
+  </app-wrapper-list>
+}
+
+@if (!loading) {
+  <h3> Popular movies </h3>
+  <app-wrapper-list
+    [columnsSm]="1"
+    [columnsMd]="2"
+    [columnsLg]="4"
+  >
+    @for (movie of movieList.slice(0, 4); track movie.id) {
+      <app-movie-card [movie]="movie"></app-movie-card>
+    }
+  </app-wrapper-list>
+}

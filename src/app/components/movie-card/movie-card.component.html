@@ -1,8 +1,8 @@
   <ng-container class="movieCard">
-    <img src="{{ movie.poster }}" alt="{{ movie.title }}">
+    <img src="{{ backdropUrl }}" alt="{{ movie.title }}">
     <div class="movieInfo">
       <p>{{ movie.title }}</p>
-      <p>{{ movie.popularity }}</p>
+      <p>{{ movie.vote_average * 10 | number:'1.0-0' }}%</p>
     </div>
   </ng-container>
 

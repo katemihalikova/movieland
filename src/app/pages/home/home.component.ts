@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { WrapperListComponent } from '../../components/wrapper-list/wrapper-list.component';
 import { Movie } from '../../models/movie.model';
-
+import { FetchMoviesService } from '../../services/fetchmovies.service';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -13,43 +13,22 @@ import { Movie } from '../../models/movie.model';
     CommonModule
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  providers: [FetchMoviesService]
 })
 export class HomeComponent implements OnInit {
 
-  movieList: Movie[] = [
-    {
-      id: 1,
-      title: 'Movie 1',
-      poster: 'https://image.tmdb.org/t/p/w500/yDHYTfA3R0jFYba16jBB1ef8oIt.jpg',
-      popularity: 6334.004,
-    },
-    {
-      id: 2,
-      title: 'Movie 2',
-      poster: 'https://image.tmdb.org/t/p/w500/yDHYTfA3R0jFYba16jBB1ef8oIt.jpg',
-      popularity: 6334.004,
-    },
-    {
-      id: 3,
-      title: 'Movie 3',
-      poster: 'https://image.tmdb.org/t/p/w500/yDHYTfA3R0jFYba16jBB1ef8oIt.jpg',
-      popularity: 6334.004,
-    },
-    {
-      id: 4,
-      title: 'Movie 4',
-      poster: 'https://image.tmdb.org/t/p/w500/yDHYTfA3R0jFYba16jBB1ef8oIt.jpg',
-      popularity: 6334.004,
-    },
-    {
-      id: 5,
-      title: 'Movie 5',
-      poster: 'https://image.tmdb.org/t/p/w500/yDHYTfA3R0jFYba16jBB1ef8oIt.jpg',
-      popularity: 6334.004,
-    }
-  ]
+  movieService = inject(FetchMoviesService);
+  movieList: Movie[] = [];
+  loading = false;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loading = true;
+    this.movieService.fetchMovies().then(movies => {
+      this.movieList = movies.results;
+    }).finally(() => {
+      this.loading = false;
+    });
+  }
 
 }
