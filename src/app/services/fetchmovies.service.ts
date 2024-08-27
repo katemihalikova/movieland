@@ -35,5 +35,60 @@ export class FetchMoviesService {
     });
   }
 
+  async fetchNowPlayingMovies() {
+    this.loading = true;
+    return await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${this.apiKey}`, this.options).then((res) => {
+      if (!res.ok) {
+        this.loading = false;
+        throw new Error('Error fetching movies');
+      } else {
+        this.loading = false;
+        return res.json();
+      }
+    }).catch((err) => {
+      this.loading = false;
+      throw new Error('Error fetching movies');
+    }).finally(() => {
+      this.loading = false;
+    });
+  }
+
+  async fetchUpcomingMovies() {
+    this.loading = true;
+    return await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${this.apiKey}`, this.options).then((res) => {
+      if (!res.ok) {
+        this.loading = false;
+        throw new Error('Error fetching movies');
+      } else {
+        this.loading = false;
+        return res.json();
+      }
+    }).catch((err) => {
+      this.loading = false;
+      throw new Error('Error fetching movies');
+    }).finally(() => {
+      this.loading = false;
+    });
+  }
+
+  async fetchPopularMovies() {
+    this.loading = true;
+    return await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${this.apiKey}`, this.options).then((res) => {
+      if (!res.ok) {
+        this.loading = false;
+        throw new Error('Error fetching movies');
+      } else {
+        this.loading = false;
+        return res.json();
+      }
+    }).catch((err) => {
+      this.loading = false;
+      throw new Error('Error fetching movies');
+    }).finally(() => {
+      this.loading = false;
+    });
+  }
+
+
 
 }

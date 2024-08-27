@@ -20,12 +20,21 @@ export class HomeComponent implements OnInit {
 
   movieService = inject(FetchMoviesService);
   movieList: Movie[] = [];
+  nowPlayingMovies: Movie[] = [];
+  upcomingMovies: Movie[] = [];
+  popularMovies: Movie[] = [];
   loading = false;
 
   ngOnInit() {
     this.loading = true;
-    this.movieService.fetchMovies().then(movies => {
-      this.movieList = movies.results;
+    Promise.all([
+      this.movieService.fetchNowPlayingMovies(),
+      this.movieService.fetchUpcomingMovies(),
+      this.movieService.fetchPopularMovies()
+      ]).then(([nowPlayingMovies, upcomingMovies, popularMovies]) => {
+      this.nowPlayingMovies = nowPlayingMovies.results;
+      this.upcomingMovies = upcomingMovies.results;
+      this.popularMovies = popularMovies.results;
     }).finally(() => {
       this.loading = false;
     });
