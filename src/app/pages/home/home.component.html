@@ -1,45 +1,72 @@
 <h2>Discover the amazing movies worlds</h2>
 
-@if (loading) {
-  <p>Loading...</p>
+@if (loadingNowPlaying || loadingUpcoming || loadingPopular) {
+  <p>Loading movies...</p>
 }
 
-@if (!loading) {
-  <h3> Now playing </h3>
-  <app-wrapper-list
-    [columnsSm]="2"
-    [columnsMd]="3"
-    [columnsLg]="6"
-  >
-    @for (movie of nowPlayingMovies.slice(0, 6); track movie.id) {
-      <app-movie-card [movie]="movie"></app-movie-card>
+
+    <h3> Now playing </h3>
+    <app-wrapper-list
+      [columnsSm]="2"
+      [columnsMd]="3"
+      [columnsLg]="6"
+    >
+    @if (nowPlayingMovies$ | async; as nowPlayingMovies) {
+      @for (movie of nowPlayingMovies.slice(0, 6); track movie.id) {
+        <app-movie-card [movie]="movie"></app-movie-card>
+      }
+    } @else {
+      @if (errorNowPlaying) {
+        @for (movie of placeholderCards.slice(0, 6); track $index) {
+          <div class="placeholder-card">Placeholder</div>
+        }
+      }
     }
-  </app-wrapper-list>
-}
+    </app-wrapper-list>
+    @if (errorNowPlaying) {
+      <p class="error-message">Error loading now playing movies</p>
+    }
 
-
-@if (!loading) {
   <h3> Upcoming movies </h3>
   <app-wrapper-list
     [columnsSm]="2"
     [columnsMd]="2"
     [columnsLg]="4"
   >
+  @if (upcomingMovies$ | async; as upcomingMovies) {
     @for (movie of upcomingMovies.slice(0, 4); track movie.id) {
     <app-movie-card [movie]="movie"></app-movie-card>
+  }
+} @else {
+  @if (errorUpcoming) {
+    @for (movie of placeholderCards.slice(0, 4); track $index) {
+      <div class="placeholder-card">Placeholder</div>
     }
+  }
+}
   </app-wrapper-list>
+ @if (errorUpcoming) {
+  <p class="error-message">Error loading upcoming movies</p>
 }
 
-@if (!loading) {
   <h3> Popular movies </h3>
   <app-wrapper-list
     [columnsSm]="2"
     [columnsMd]="4"
     [columnsLg]="8"
   >
+  @if (popularMovies$ | async; as popularMovies) {
     @for (movie of popularMovies.slice(0, 8); track movie.id) {
       <app-movie-card [movie]="movie"></app-movie-card>
     }
+  } @else {
+    @if (errorPopular) {
+      @for (movie of placeholderCards.slice(0, 8); track $index) {
+        <div class="placeholder-card">Placeholder</div>
+      }
+    }
+  }
   </app-wrapper-list>
-}
+  @if (errorPopular) {
+    <p class="error-message">Error loading popular movies</p>
+  }
