@@ -9,7 +9,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "movies-app": {
+    "movieland": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/movies-app",
+            "outputPath": "dist/movieland",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -79,10 +79,10 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "movies-app:build:production"
+              "buildTarget": "movieland:build:production"
             },
             "development": {
-              "buildTarget": "movies-app:build:development"
+              "buildTarget": "movieland:build:development"
             }
           },
           "defaultConfiguration": "development"

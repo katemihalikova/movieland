@@ -11,5 +11,5 @@ import { MainContainerComponent } from './components/main-container/main-contain
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'movies-app';
+  title = 'movieland';
 }
