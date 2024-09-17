@@ -1,10 +1,6 @@
-  <ng-container class="movieCard">
-    <img src="{{ posterUrl }}" alt="{{ movie.title }}">
+    <img src="https://image.tmdb.org/t/p/w500{{movie.backdrop_path}}" alt="{{ movie.title }}">
     <div class="movieInfo">
       <p>{{ movie.title }}</p>
       <p>{{ movie.vote_average * 10 | number:'1.0-0' }}%</p>
     </div>
     <p>{{ movie.release_date }}</p>
-  </ng-container>
-
-

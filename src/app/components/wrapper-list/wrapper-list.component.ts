@@ -48,7 +48,6 @@ export class WrapperListComponent {
 
   @HostBinding('style.gridTemplateColumns')
   get gridTemplateColumns() {
-   // console.log('gridTemplateColumns: ', this.currentColumns);
     return `repeat(${this.currentColumns}, 1fr)`;
   }
 

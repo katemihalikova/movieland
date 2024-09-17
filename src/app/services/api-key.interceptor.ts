@@ -2,13 +2,12 @@ import { HttpRequest, HttpHandlerFn, HttpEvent, HttpInterceptorFn } from '@angul
 import { Observable } from 'rxjs';
 
  export const interceptApiKey:HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> => {
-    console.log('Intercepted Request:', req);
+
+  const apiKey = import.meta.env.API_KEY;
 
     const modifiedReq = req.clone({
-      params: req.params.set('api_key', '873e6334422e12d4227b13e0cb924ef3')
+      params: req.params.set('api_key', apiKey)
     });
-
-    console.log('Modified Request:', modifiedReq);
 
     return next(modifiedReq);
   }

@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { Movie } from '../models/movie.model';
+import { ListResponse } from '../models/list-response.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,17 +9,16 @@ export class MoviesService {
 
   http = inject(HttpClient);
 
-
-  getNowPlayingMovies(): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/movie/now_playingx`);
+  getNowPlayingMovies() {
+    return this.http.get<ListResponse<Movie>>(`https://api.themoviedb.org/3/movie/now_playingx`);
   }
 
-  getUpcomingMovies(): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/movie/upcomingx`);
+  getUpcomingMovies() {
+    return this.http.get<ListResponse<Movie>>(`https://api.themoviedb.org/3/movie/upcoming`);
   }
 
-  getPopularMovies(): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/movie/popularx`);
+  getPopularMovies() {
+    return this.http.get<ListResponse<Movie>>(`https://api.themoviedb.org/3/movie/popularx`);
   }
 
 }

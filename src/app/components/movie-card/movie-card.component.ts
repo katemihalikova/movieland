@@ -13,13 +13,4 @@ export class MovieCardComponent {
 
   @Input() movie!: Movie;
 
-  baseImgUrl: string = 'https://image.tmdb.org/t/p/w500';
-  posterUrl: string = '';
-  backdropUrl: string = '';
-
-  ngOnInit() {
-    this.posterUrl = `${this.baseImgUrl}${this.movie.poster_path}`;
-    this.backdropUrl = `${this.baseImgUrl}${this.movie.backdrop_path}`;
-  }
-
 }
