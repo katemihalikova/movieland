@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 export const interceptApiKey: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> => {
 
-  const apiKey = import.meta.env.API_KEY;
+  const apiKey = process.env['API_KEY'];
 
   const modifiedReq = req.clone({
     params: req.params.set('api_key', apiKey)

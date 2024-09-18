@@ -2,12 +2,11 @@
   "name": "movieland",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:movieland": "node dist/movieland/server/server.mjs"
+    "ng": "node -r dotenv/config ./node_modules/.bin/ng",
+    "start": "node -r dotenv/config mynode.js && ng serve",
+    "build": "node -r dotenv/config ./node_modules/.bin/ng build",
+    "watch": "node -r dotenv/config ./node_modules/.bin/ng build --watch --configuration development",
+    "test": "node -r dotenv/config ./node_modules/.bin/ng test"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +20,7 @@
     "@angular/platform-server": "^18.2.0",
     "@angular/router": "^18.2.0",
     "@angular/ssr": "^18.2.1",
+    "dotenv": "^16.4.5",
     "express": "^4.18.2",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
@@ -31,6 +31,7 @@
     "@angular-devkit/build-angular": "^18.2.1",
     "@angular/cli": "^18.2.1",
     "@angular/compiler-cli": "^18.2.0",
+    "@ngx-env/builder": "^18.0.1",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
