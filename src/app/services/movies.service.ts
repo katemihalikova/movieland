@@ -10,7 +10,7 @@ export class MoviesService {
   http = inject(HttpClient);
 
   getNowPlayingMovies() {
-    return this.http.get<ListResponse<Movie>>(`https://api.themoviedb.org/3/movie/now_playingxy`);
+    return this.http.get<ListResponse<Movie>>(`https://api.themoviedb.org/3/movie/now_playing`);
   }
 
   getUpcomingMovies() {
