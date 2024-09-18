@@ -10,6 +10,7 @@
           [columnsMd]="3"
           [columnsLg]="6"
         >
+
           @for (movie of dataOrError.slice(0, 6); track movie.id) {
           <app-movie-card [movie]="movie"></app-movie-card>
             }

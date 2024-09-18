@@ -28,7 +28,7 @@ export class HomeComponent {
   private movieService = inject(MoviesService);
 
   nowPlayingMovies$ = this.movieService.getNowPlayingMovies().pipe(
-    map(response => response.results),
+    map(response => {console.log(response.results); return response.results}),
     catchError((error: HttpErrorResponse) => of(error))
   );
 

@@ -6,7 +6,8 @@
     "start": "node -r dotenv/config mynode.js && ng serve",
     "build": "node -r dotenv/config ./node_modules/.bin/ng build",
     "watch": "node -r dotenv/config ./node_modules/.bin/ng build --watch --configuration development",
-    "test": "node -r dotenv/config ./node_modules/.bin/ng test"
+    "test": "node -r dotenv/config ./node_modules/.bin/ng test",
+    "serve:ssr:movieland": "node dist/movieland/server/server.mjs"
   },
   "private": true,
   "dependencies": {
