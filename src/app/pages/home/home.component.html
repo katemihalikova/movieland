@@ -21,8 +21,8 @@
           [columnsMd]="3"
           [columnsLg]="6"
         >
-        @for (movie of placeholderCards.slice(0, 6); track $index) {
-            <div class="placeholder-card">Loading...</div>
+        @for (movie of 6 | times; track $index) {
+            <app-skeleton-placeholder></app-skeleton-placeholder>
         }
       </app-wrapper-list>
       }
@@ -49,8 +49,8 @@
       [columnsMd]="2"
       [columnsLg]="4"
     >
-    @for (movie of placeholderCards.slice(0, 4); track $index) {
-      <div class="placeholder-card">Loading...</div>
+    @for (movie of 4 | times; track $index) {
+      <app-skeleton-placeholder></app-skeleton-placeholder>
     }
   </app-wrapper-list>
   }
@@ -77,8 +77,8 @@
       [columnsMd]="4"
       [columnsLg]="8"
     >
-    @for (movie of placeholderCards.slice(0, 8); track $index) {
-      <div class="placeholder-card">Loading...</div>
+    @for (movie of 8 | times; track $index) {
+      <app-skeleton-placeholder></app-skeleton-placeholder>
     }
   </app-wrapper-list>
   }

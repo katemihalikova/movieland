@@ -1,11 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
+import { SkeletonPlaceholderComponent } from '../../components/skeleton-placeholder/skeleton-placeholder.component';
 import { WrapperListComponent } from '../../components/wrapper-list/wrapper-list.component';
 import { Movie } from '../../models/movie.model';
 import { MoviesService } from '../../services/movies.service';
 import { catchError, map, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TimesPipe } from './time.pipe';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,8 @@ import { HttpErrorResponse } from '@angular/common/http';
     MovieCardComponent,
     WrapperListComponent,
     CommonModule,
+    SkeletonPlaceholderComponent,
+    TimesPipe
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -22,8 +26,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class HomeComponent {
 
   private movieService = inject(MoviesService);
-
-  placeholderCards: void[] = Array(8);
 
   nowPlayingMovies$ = this.movieService.getNowPlayingMovies().pipe(
     map(response => response.results),

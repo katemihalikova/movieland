@@ -10,7 +10,7 @@ import { inject } from '@angular/core';
     return next(req).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Error:', error);
-        toastr.error(`The error status code is ${error.status} - ${error.statusText}.`);
+        toastr.error(`The error status code is ${error.status}.`);
         return throwError(() => error);
       })
     );
